@@ -27,3 +27,6 @@ yarn-error.log*
 
 # Editor Config file
 .editorconfig
+
+# Config files
+src/config
