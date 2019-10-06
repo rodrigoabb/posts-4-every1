@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import Notifications from './Notifications';
 import PostList from '../posts/PostList';
-import { connect } from 'react-redux'; // Connect the Dashboard component with Redux Store
-// Connect is a function that returns a HOC to take in the Dashboard
+import { connect } from 'react-redux'; // Connect the Dashboard component with Redux Store. It's a function that returns a HOC to take in the Dashboard
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 
