@@ -4,11 +4,14 @@ import PostList from '../posts/PostList';
 import { connect } from 'react-redux'; // Connect the Dashboard component with Redux Store. It's a function that returns a HOC to take in the Dashboard
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
+import { Redirect } from 'react-router-dom';
 
 class Dashboard extends Component {
   render() {
     // console.log(this.props);
-    const { posts } = this.props;
+    const { posts, auth } = this.props;
+    if (!auth.uid) return <Redirect to='signin' />
+
     return (
       <div className="dashboard container">
         <div className="row">
@@ -29,7 +32,8 @@ class Dashboard extends Component {
 const mapStateToProps = (state) => {
   console.log('state:', state);
   return {
-    posts: state.firestore.ordered.posts
+    posts: state.firestore.ordered.posts,
+    auth: state.firebase.auth
   }
 
 }

@@ -12,7 +12,7 @@ import { reduxFirestore, getFirestore } from 'redux-firestore';
 import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
 import { createFirestoreInstance } from 'redux-firestore'
 import firebaseConfig from './config/firebaseConfig';
-import { authIsReady }  from "react-redux-firebase";
+// import { authIsReady }  from "react-redux-firebase";
 
 const store = createStore(rootReducer,
   compose(
