@@ -12,6 +12,7 @@ import { reduxFirestore, getFirestore } from 'redux-firestore';
 import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
 import { createFirestoreInstance } from 'redux-firestore'
 import firebaseConfig from './config/firebaseConfig';
+import { authIsReady }  from "react-redux-firebase";
 
 const store = createStore(rootReducer,
   compose(
@@ -20,24 +21,33 @@ const store = createStore(rootReducer,
     // reactReduxFirebase(firebaseConfig),
   )
 );
+
 const rrfConfig = { userProfile: 'users' } // react-redux-firebase config
 
 const rrfProps = {
   firebase: firebaseConfig,
   config: rrfConfig,
   dispatch: store.dispatch,
+  attachAuthIsReady: true, // attaches auth is ready promise to store
   createFirestoreInstance // <- needed if using firestore
   }
 
-ReactDOM.render(
-  <Provider store= { store }>
-    <ReactReduxFirebaseProvider {...rrfProps}>
-      <App />
-    </ReactReduxFirebaseProvider>
-  </Provider>,
-  document.getElementById('root'));
+  console.log('store URA: ', store);
+  // console.log('authIsReady URA: ', authIsReady);
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+// store.firebaseAuthIsReady.then(() => { // NOT WORKING ON V3
+  ReactDOM.render(
+    <Provider store= { store }>
+      <ReactReduxFirebaseProvider {...rrfProps}>
+        <App />
+      </ReactReduxFirebaseProvider>
+    </Provider>,
+    document.getElementById('root'));
+
+  // If you want your app to work offline and load faster, you can change
+  // unregister() to register() below. Note this comes with some pitfalls.
+  // Learn more about service workers: https://bit.ly/CRA-PWA
+  serviceWorker.unregister();
+
+  // });
+

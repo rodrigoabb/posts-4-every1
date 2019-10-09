@@ -6,12 +6,14 @@ import PostDetails from './components/posts/PostDetails';
 import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
 import CreatePost from './components/posts/CreatePost';
+import { connect } from 'react-redux';
 
 import 'materialize-css'; // It installs the JS asset only
 import 'materialize-css/dist/css/materialize.min.css';
 
-function App() {
-  return (
+function App(props) {
+  console.log('props: ', props);
+  const app = props.auth.isLoaded ?
     <BrowserRouter>
       <div className="App">
         <Navbar />
@@ -24,7 +26,15 @@ function App() {
         </Switch>
       </div>
     </BrowserRouter>
-  );
+    :
+    null;
+
+  return app;
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    auth: state.firebase.auth
+  }
+}
+export default connect(mapStateToProps)(App);
