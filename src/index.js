@@ -22,7 +22,10 @@ const store = createStore(rootReducer,
   )
 );
 
-const rrfConfig = { userProfile: 'users' } // react-redux-firebase config
+const rrfConfig = { // react-redux-firebase config
+  useFirestoreForProfile: true, // sync, fetch collection associated with uid from login, under 'profile' state
+  userProfile: 'users' // that collection is called 'users';
+}
 
 const rrfProps = {
   firebase: firebaseConfig,
@@ -31,9 +34,6 @@ const rrfProps = {
   attachAuthIsReady: true, // attaches auth is ready promise to store
   createFirestoreInstance // <- needed if using firestore
   }
-
-  console.log('store URA: ', store);
-  // console.log('authIsReady URA: ', authIsReady);
 
 // store.firebaseAuthIsReady.then(() => { // NOT WORKING ON V3
   ReactDOM.render(
