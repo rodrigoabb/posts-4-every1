@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 
 const PostSummary = ({ post }) => {
   return (
@@ -6,7 +7,8 @@ const PostSummary = ({ post }) => {
         <div className="card-content grey-text text-darken-3">
           <span className="card-title">{ post.title }</span>
           <p>Posted by { post.authorFirstName } { post.authorLastName }</p>
-          <p className="grey-text"> 3erd September, 2am</p>
+          {/* <p className="grey-text"> { post.createdAt.toDate().toString() }</p> */}
+          <p className="grey-text"> { moment(post.createdAt.toDate()).calendar() }</p>
         </div>
       </div>
   )
