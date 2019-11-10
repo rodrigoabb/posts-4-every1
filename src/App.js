@@ -12,6 +12,7 @@ import 'materialize-css'; // It installs the JS asset only
 import 'materialize-css/dist/css/materialize.min.css';
 
 function App(props) {
+  console.log('App.js: ', props);
   const app = props.auth.isLoaded ?
     <BrowserRouter>
       <div className="App">
