@@ -40,8 +40,8 @@ const mapStateToProps = (state) => {
 export default compose(
   connect(mapStateToProps),
   firestoreConnect([
-    { collection: 'posts' },
-    { collection: 'notifications', limit: 3 }
+    { collection: 'posts', orderBy: ['createdAt', 'desc'] },
+    { collection: 'notifications', limit: 3, orderBy: ['time', 'desc'] }
   ])
  )(Dashboard);
 // After passing mapStateToProps, we can acces to props.posts inside this component
