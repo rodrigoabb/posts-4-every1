@@ -30,3 +30,9 @@ yarn-error.log*
 
 # Config files
 src/config
+
+# Firebase
+.firebase
+
+#Dist folder (was temporary)
+dist
